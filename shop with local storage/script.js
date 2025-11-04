@@ -33,9 +33,11 @@ function printList(item) {
     li.querySelector('button').addEventListener('click', function () {
         let bag = JSON.parse(localStorage.getItem('bag'))
         let product = { ...item, count: 1 }
+        product.totalOfProduct = product.product_price * product.count
         if (bag.some((el) => el.id === product.id)) {
             let elIndex = bag.findIndex((el) => el.id === product.id)
             bag[elIndex].count = bag[elIndex].count + 1
+            bag[elIndex].totalOfProduct = bag[elIndex].product_price * bag[elIndex].count
         } else {
             bag.push(product)
         }
